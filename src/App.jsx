@@ -19,6 +19,15 @@ function App() {
     });
   }
 
+  function handleCancelAddProject() {
+    setProjectsState(prevState => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined
+      };
+    });
+  }
+
   function handeleAddProject(projectData) {
     setProjectsState(prevState => {
       const projectId = Math.random();
@@ -37,7 +46,7 @@ function App() {
   let content;
 
   if(projectsState.selectedProjectId === null) {
-    content = <NewProject onAdd={handeleAddProject} />
+    content = <NewProject onAdd={handeleAddProject} onCancel={handleCancelAddProject} />
   } else if(projectsState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />
   }
